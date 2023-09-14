@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: createstorecr
+description: Create Credit Request
+version: 0.0.1
+modules:
+- name: createstorecr-dest-content
+  type: com.sap.application.content
+  requires:
+  - name: createstorecr-dest-srv
+    parameters:
+      content-target: true
+  - name: createstorecr-repo-host
+    parameters:
+      service-key:
+        name: createstorecr-repo-host-key
+  - name: createstorecr-uaa
+    parameters:
+      service-key:
+        name: createstorecr-uaa-key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: createstorecr_repo_host
+          ServiceInstanceName: createstorecr-html5-srv
+          ServiceKeyName: createstorecr-repo-host-key
+          sap.cloud.service: createstorecr
+        - Authentication: OAuth2UserTokenExchange
+          Name: createstorecr_uaa
+          ServiceInstanceName: createstorecr-xsuaa-srv
+          ServiceKeyName: createstorecr-uaa-key
+          sap.cloud.service: createstorecr
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: createstorecr-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: createstorecr-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - createstorecr.zip
+      name: createstorecr
+      target-path: resources/
+- name: createstorecr
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: createstorecr-dest-srv
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: createstorecr-dest-srv
+    service-plan: lite
+- name: createstorecr-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: createstorecr-xsuaa-srv
+    service-plan: application
+- name: createstorecr-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: createstorecr-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

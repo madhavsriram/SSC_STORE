@@ -1,0 +1,4 @@
+<core:FragmentDefinition  xmlns:sfi="sap.ui.comp.smartfield" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:sfo="sap.ui.comp.smartform">
+<sfo:GroupElement>
+</sfo:GroupElement>
+</core:FragmentDefinition>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:up="sap.m.upload" id="CreateWithoutInvoice">
+   <Dialog id="DialogPopUp" afterClose="afterClose" beforeOpen="onBeforeOpenDialog" titleAlignment="Center" class="bgHeader dialogbgText sapUiPopupWithPadding" contentWidth="500px" title="{i18n>CreateCRWithoutInvoice}">
+      <l:VerticalLayout id="Vertical" width="100%">
+        <Text text="{i18n>EnterRemark}"/>
+         <Label id="RemarkLabel" text="{i18n>Remark}" required="true" width="100%" class="blackText sapUiTinyMarginTop" />
+         <TextArea id="Remark" showExceededText="false" maxLength="500" width="100%" valueLiveUpdate="{/valueLiveUpdate}" liveChange="handleLiveChange" />
+         <HBox alignItems="End" justifyContent="End">
+         <Label text="{i18n>500CharactersAllowed}" id="lbl1"></Label> 
+         </HBox>
+         <Label text="{i18n>Photo}" required="true" width="100%" class="blackText" />
+         <up:UploadSet afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadEnabled="true" beforeItemAdded="onBeforeItemAdded" afterItemRemoved="onRemoveItem" instantUpload="false" id="CustomUpload"/>         
+      </l:VerticalLayout>
+      <buttons>
+         <Button id="Save" text="{i18n>Save}" type="Emphasized" press="onSavePressed" />
+         <Button id="Submit" text="{i18n>Submit}" type="Emphasized" press="onSubmitPressed" />
+         <Button id="Close" text="{i18n>Close}" type="Emphasized" press="onClosePressed" />
+      </buttons>
+   </Dialog>
+</core:FragmentDefinition>   

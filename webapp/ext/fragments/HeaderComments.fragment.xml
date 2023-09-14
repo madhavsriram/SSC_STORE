@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:c="sap.suite.ui.commons" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc">
+   <Dialog title="{i18n>HeaderComments}" class="bgHeader dialogbgText" titleAlignment="Center">
+      <content>
+         <c:Timeline noDataText="{i18n>NoCommentsAvailable}" axisOrientation="Vertical" showIcons="true" showSearch="false" showSort="false" showItemFilter="false" showFilterBar="false" enableScroll="false" enableDoubleSided="false" content="{headerCommentsModel&gt;/results}" select="onTimelineSelect">
+            <c:content>
+               <c:TimelineItem dateTime="{headerCommentsModel&gt;createdAt}" customActionClicked="onSelect" title="{i18n>leftcomment}" text="{headerCommentsModel&gt;Comment}" icon="sap-icon://comment" userName="{headerCommentsModel&gt;createdBy}" />
+            </c:content>
+         </c:Timeline>
+         <!-- <FeedInput placeholder="Enter Comments"
+		post="onHeaderCommentPost"
+		showIcon="false" /> -->
+         <TextArea id="idHeaderCTA" placeholder="{i18n>EnterComments}" width="295px" height="75px" class="sapUiSmallMarginBegin" valueLiveUpdate="true" liveChange="liveChangeHeader"/>
+      </content>
+      <buttons>
+         <Button id="sendHeader" text="{i18n>Save}" press="onHeaderCommentPost" enabled="false" />
+         <Button text="{i18n>Close}" press="onHeaderCommentsClose" />
+         <!-- <Button icon="sap-icon://decline" tooltip="Close" type="Reject" press="onHeaderCommentsClose"></Button> -->
+      </buttons>
+   </Dialog> 
+</core:FragmentDefinition>   

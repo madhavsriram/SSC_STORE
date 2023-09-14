@@ -1,0 +1,2263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="DominosMasters" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Store" EntityType="DominosMasters.Store"/>
+                <EntitySet Name="Address" EntityType="DominosMasters.Address"/>
+                <EntitySet Name="Accountant" EntityType="DominosMasters.Accountant"/>
+                <EntitySet Name="Region" EntityType="DominosMasters.Region"/>
+                <EntitySet Name="SCCRegion" EntityType="DominosMasters.SCCRegion"/>
+                <EntitySet Name="CRType" EntityType="DominosMasters.CRType"/>
+                <EntitySet Name="Franchise" EntityType="DominosMasters.Franchise"/>
+                <EntitySet Name="Department" EntityType="DominosMasters.Department"/>
+                <EntitySet Name="ReasonCode" EntityType="DominosMasters.ReasonCode"/>
+                <EntitySet Name="Damage" EntityType="DominosMasters.Damage"/>
+                <EntitySet Name="UserConfig" EntityType="DominosMasters.UserConfig"/>
+                <EntitySet Name="UserAssignment" EntityType="DominosMasters.UserAssignment"/>
+                <EntitySet Name="Route" EntityType="DominosMasters.Route"/>
+                <EntitySet Name="User" EntityType="DominosMasters.User"/>
+                <EntitySet Name="OrgStructureEle" EntityType="DominosMasters.OrgStructureEle"/>
+                <EntitySet Name="ObjectType" EntityType="DominosMasters.ObjectType"/>
+                <EntitySet Name="CRStatus" EntityType="DominosMasters.CRStatus"/>
+                <EntitySet Name="UserGroup" EntityType="DominosMasters.UserGroup"/>
+                <EntitySet Name="Roles" EntityType="DominosMasters.Roles"/>
+                <EntitySet Name="Remark" EntityType="DominosMasters.Remark"/>
+                <EntitySet Name="AccessControlHead" EntityType="DominosMasters.AccessControlHead"/>
+                <EntitySet Name="AccessControlRow" EntityType="DominosMasters.AccessControlRow"/>
+                <EntitySet Name="FormMaster" EntityType="DominosMasters.FormMaster"/>
+                <EntitySet Name="StatusConfigHead" EntityType="DominosMasters.StatusConfigHead"/>
+                <EntitySet Name="StatusConfigNextStaus" EntityType="DominosMasters.StatusConfigNextStaus"/>
+                <EntitySet Name="StatusConfigAccess" EntityType="DominosMasters.StatusConfigAccess"/>
+                <EntitySet Name="ChangeLog" EntityType="DominosMasters.ChangeLog"/>
+                <EntitySet Name="BTP_DelvFee_Setup" EntityType="DominosMasters.BTP_DelvFee_Setup"/>
+                <EntitySet Name="BTP_DelvFee_Setup_Dtl" EntityType="DominosMasters.BTP_DelvFee_Setup_Dtl"/>
+                <EntitySet Name="ProductName" EntityType="DominosMasters.ProductName"/>
+                <EntitySet Name="ProductIssue" EntityType="DominosMasters.ProductIssue"/>
+                <EntitySet Name="ProductIssueMaster" EntityType="DominosMasters.ProductIssueMaster"/>
+                <EntitySet Name="FiscalPeriod" EntityType="DominosMasters.FiscalPeriod"/>
+                <EntitySet Name="FiscalPeriodRow" EntityType="DominosMasters.FiscalPeriodRow"/>
+                <EntitySet Name="StoreDataLog" EntityType="DominosMasters.StoreDataLog"/>
+                <EntitySet Name="UserLog" EntityType="DominosMasters.UserLog"/>
+                <EntitySet Name="StoreHeader" EntityType="DominosMasters.StoreHeader"/>
+                <EntitySet Name="SCCHeader" EntityType="DominosMasters.SCCHeader"/>
+                <EntitySet Name="CreditRequestStatus" EntityType="DominosMasters.CreditRequestStatus"/>
+                <FunctionImport Name="AddUserMaster" EntitySet="UserLog" ReturnType="Collection(DominosMasters.UserLog)" m:HttpMethod="POST">
+                    <Parameter Name="UserId" Type="Edm.String" MaxLength="50" Mode="In" Nullable="true"/>
+                    <Parameter Name="Prefix" Type="Edm.String" MaxLength="8" Mode="In" Nullable="true"/>
+                    <Parameter Name="FirstName" Type="Edm.String" MaxLength="30" Mode="In" Nullable="true"/>
+                    <Parameter Name="LastName" Type="Edm.String" MaxLength="30" Mode="In" Nullable="true"/>
+                    <Parameter Name="E_mail_ID" Type="Edm.String" MaxLength="50" Mode="In" Nullable="true"/>
+                    <Parameter Name="Mob_No" Type="Edm.String" MaxLength="50" Mode="In" Nullable="true"/>
+                    <Parameter Name="Status" Type="Edm.String" MaxLength="15" Mode="In" Nullable="true"/>
+                    <Parameter Name="Assignment" Type="Collection(DominosMasters.Assignment)" Nullable="false" Mode="In"/>
+                </FunctionImport>
+                <AssociationSet Name="Store_SCCId" Association="DominosMasters.Store_SCCId">
+                    <End Role="Store" EntitySet="Store"/>
+                    <End Role="SCCRegion" EntitySet="SCCRegion"/>
+                </AssociationSet>
+                <AssociationSet Name="Store_FranchiseId" Association="DominosMasters.Store_FranchiseId">
+                    <End Role="Store" EntitySet="Store"/>
+                    <End Role="Franchise" EntitySet="Franchise"/>
+                </AssociationSet>
+                <AssociationSet Name="Address_StoreId" Association="DominosMasters.Address_StoreId">
+                    <End Role="Address" EntitySet="Address"/>
+                    <End Role="Store" EntitySet="Store"/>
+                </AssociationSet>
+                <AssociationSet Name="Address_RegionId" Association="DominosMasters.Address_RegionId">
+                    <End Role="Address" EntitySet="Address"/>
+                    <End Role="Region" EntitySet="Region"/>
+                </AssociationSet>
+                <AssociationSet Name="Address_SCCId" Association="DominosMasters.Address_SCCId">
+                    <End Role="Address" EntitySet="Address"/>
+                    <End Role="SCCRegion" EntitySet="SCCRegion"/>
+                </AssociationSet>
+                <AssociationSet Name="Address_FranchiseId" Association="DominosMasters.Address_FranchiseId">
+                    <End Role="Address" EntitySet="Address"/>
+                    <End Role="Franchise" EntitySet="Franchise"/>
+                </AssociationSet>
+                <AssociationSet Name="Accountant_Address" Association="DominosMasters.Accountant_Address">
+                    <End Role="Accountant" EntitySet="Accountant"/>
+                    <End Role="Address" EntitySet="Address"/>
+                </AssociationSet>
+                <AssociationSet Name="Accountant_RegionId" Association="DominosMasters.Accountant_RegionId">
+                    <End Role="Accountant" EntitySet="Accountant"/>
+                    <End Role="Region" EntitySet="Region"/>
+                </AssociationSet>
+                <AssociationSet Name="Franchise_AccountantId" Association="DominosMasters.Franchise_AccountantId">
+                    <End Role="Franchise" EntitySet="Franchise"/>
+                    <End Role="Accountant" EntitySet="Accountant"/>
+                </AssociationSet>
+                <AssociationSet Name="Franchise_SCCId" Association="DominosMasters.Franchise_SCCId">
+                    <End Role="Franchise" EntitySet="Franchise"/>
+                    <End Role="SCCRegion" EntitySet="SCCRegion"/>
+                </AssociationSet>
+                <AssociationSet Name="UserConfig_UserId" Association="DominosMasters.UserConfig_UserId">
+                    <End Role="UserConfig" EntitySet="UserConfig"/>
+                    <End Role="User" EntitySet="User"/>
+                </AssociationSet>
+                <AssociationSet Name="UserAssignment_User" Association="DominosMasters.UserAssignment_User">
+                    <End Role="UserAssignment" EntitySet="UserAssignment"/>
+                    <End Role="User" EntitySet="User"/>
+                </AssociationSet>
+                <AssociationSet Name="User_OrgStruEleCode" Association="DominosMasters.User_OrgStruEleCode">
+                    <End Role="User" EntitySet="User"/>
+                    <End Role="OrgStructureEle" EntitySet="OrgStructureEle"/>
+                </AssociationSet>
+                <AssociationSet Name="User_UserGroup" Association="DominosMasters.User_UserGroup">
+                    <End Role="User" EntitySet="User"/>
+                    <End Role="UserGroup" EntitySet="UserGroup"/>
+                </AssociationSet>
+                <AssociationSet Name="User_DepartmentId" Association="DominosMasters.User_DepartmentId">
+                    <End Role="User" EntitySet="User"/>
+                    <End Role="Department" EntitySet="Department"/>
+                </AssociationSet>
+                <AssociationSet Name="CRStatus_ObjectType" Association="DominosMasters.CRStatus_ObjectType">
+                    <End Role="CRStatus" EntitySet="CRStatus"/>
+                    <End Role="ObjectType" EntitySet="ObjectType"/>
+                </AssociationSet>
+                <AssociationSet Name="UserGroup_OrgStrucEleCode" Association="DominosMasters.UserGroup_OrgStrucEleCode">
+                    <End Role="UserGroup" EntitySet="UserGroup"/>
+                    <End Role="OrgStructureEle" EntitySet="OrgStructureEle"/>
+                </AssociationSet>
+                <AssociationSet Name="AccessControlHead_OrgStrucEleCode" Association="DominosMasters.AccessControlHead_OrgStrucEleCode">
+                    <End Role="AccessControlHead" EntitySet="AccessControlHead"/>
+                    <End Role="OrgStructureEle" EntitySet="OrgStructureEle"/>
+                </AssociationSet>
+                <AssociationSet Name="AccessControlHead_UserGroup" Association="DominosMasters.AccessControlHead_UserGroup">
+                    <End Role="AccessControlHead" EntitySet="AccessControlHead"/>
+                    <End Role="UserGroup" EntitySet="UserGroup"/>
+                </AssociationSet>
+                <AssociationSet Name="AccessControlRow_ObjectType" Association="DominosMasters.AccessControlRow_ObjectType">
+                    <End Role="AccessControlRow" EntitySet="AccessControlRow"/>
+                    <End Role="ObjectType" EntitySet="ObjectType"/>
+                </AssociationSet>
+                <AssociationSet Name="FormMaster_ObjectType" Association="DominosMasters.FormMaster_ObjectType">
+                    <End Role="FormMaster" EntitySet="FormMaster"/>
+                    <End Role="ObjectType" EntitySet="ObjectType"/>
+                </AssociationSet>
+                <AssociationSet Name="StatusConfigHead_ObjectType" Association="DominosMasters.StatusConfigHead_ObjectType">
+                    <End Role="StatusConfigHead" EntitySet="StatusConfigHead"/>
+                    <End Role="ObjectType" EntitySet="ObjectType"/>
+                </AssociationSet>
+                <AssociationSet Name="StatusConfigHead_StatusCode" Association="DominosMasters.StatusConfigHead_StatusCode">
+                    <End Role="StatusConfigHead" EntitySet="StatusConfigHead"/>
+                    <End Role="CRStatus" EntitySet="CRStatus"/>
+                </AssociationSet>
+                <AssociationSet Name="StatusConfigNextStaus_StatusCode" Association="DominosMasters.StatusConfigNextStaus_StatusCode">
+                    <End Role="StatusConfigNextStaus" EntitySet="StatusConfigNextStaus"/>
+                    <End Role="CRStatus" EntitySet="CRStatus"/>
+                </AssociationSet>
+                <AssociationSet Name="StatusConfigNextStaus_StatusConfigHead" Association="DominosMasters.StatusConfigNextStaus_StatusConfigHead">
+                    <End Role="StatusConfigNextStaus" EntitySet="StatusConfigNextStaus"/>
+                    <End Role="StatusConfigHead" EntitySet="StatusConfigHead"/>
+                </AssociationSet>
+                <AssociationSet Name="StatusConfigAccess_AccessTo" Association="DominosMasters.StatusConfigAccess_AccessTo">
+                    <End Role="StatusConfigAccess" EntitySet="StatusConfigAccess"/>
+                    <End Role="OrgStructureEle" EntitySet="OrgStructureEle"/>
+                </AssociationSet>
+                <AssociationSet Name="StatusConfigAccess_StatusConfigHead" Association="DominosMasters.StatusConfigAccess_StatusConfigHead">
+                    <End Role="StatusConfigAccess" EntitySet="StatusConfigAccess"/>
+                    <End Role="StatusConfigHead" EntitySet="StatusConfigHead"/>
+                </AssociationSet>
+                <AssociationSet Name="ChangeLog_ObjectType" Association="DominosMasters.ChangeLog_ObjectType">
+                    <End Role="ChangeLog" EntitySet="ChangeLog"/>
+                    <End Role="ObjectType" EntitySet="ObjectType"/>
+                </AssociationSet>
+                <AssociationSet Name="ChangeLog_UserId" Association="DominosMasters.ChangeLog_UserId">
+                    <End Role="ChangeLog" EntitySet="ChangeLog"/>
+                    <End Role="User" EntitySet="User"/>
+                </AssociationSet>
+                <AssociationSet Name="BTP_DelvFee_Setup_CRType" Association="DominosMasters.BTP_DelvFee_Setup_CRType">
+                    <End Role="BTP_DelvFee_Setup" EntitySet="BTP_DelvFee_Setup"/>
+                    <End Role="CRType" EntitySet="CRType"/>
+                </AssociationSet>
+                <AssociationSet Name="BTP_DelvFee_Setup_Dtl_BTP_DelvFee_Setup" Association="DominosMasters.BTP_DelvFee_Setup_Dtl_BTP_DelvFee_Setup">
+                    <End Role="BTP_DelvFee_Setup_Dtl" EntitySet="BTP_DelvFee_Setup_Dtl"/>
+                    <End Role="BTP_DelvFee_Setup" EntitySet="BTP_DelvFee_Setup"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductIssue_IssueCode" Association="DominosMasters.ProductIssue_IssueCode">
+                    <End Role="ProductIssue" EntitySet="ProductIssue"/>
+                    <End Role="ProductIssueMaster" EntitySet="ProductIssueMaster"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductIssue_ProductID" Association="DominosMasters.ProductIssue_ProductID">
+                    <End Role="ProductIssue" EntitySet="ProductIssue"/>
+                    <End Role="ProductName" EntitySet="ProductName"/>
+                </AssociationSet>
+                <AssociationSet Name="FiscalPeriodRow_FYCODE" Association="DominosMasters.FiscalPeriodRow_FYCODE">
+                    <End Role="FiscalPeriodRow" EntitySet="FiscalPeriodRow"/>
+                    <End Role="FiscalPeriod" EntitySet="FiscalPeriod"/>
+                </AssociationSet>
+                <AssociationSet Name="StoreHeader_SCCId" Association="DominosMasters.StoreHeader_SCCId">
+                    <End Role="StoreHeader" EntitySet="StoreHeader"/>
+                    <End Role="SCCRegion" EntitySet="SCCRegion"/>
+                </AssociationSet>
+                <AssociationSet Name="StoreHeader_FranchiseId" Association="DominosMasters.StoreHeader_FranchiseId">
+                    <End Role="StoreHeader" EntitySet="StoreHeader"/>
+                    <End Role="Franchise" EntitySet="Franchise"/>
+                </AssociationSet>
+            </EntityContainer>
+            <EntityType Name="Store">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StoreName" Type="Edm.String" MaxLength="40"/>
+                <NavigationProperty Name="Address" Relationship="DominosMasters.Address_StoreId" FromRole="Store" ToRole="Address"/>
+                <Property Name="StoreType" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="SCCId" Relationship="DominosMasters.Store_SCCId" FromRole="Store" ToRole="SCCRegion"/>
+                <Property Name="SCCId_Id" Type="Edm.Int32"/>
+                <Property Name="SCCId_RegionId" Type="Edm.Int32"/>
+                <Property Name="PSSCCId" Type="Edm.String" MaxLength="5"/>
+                <NavigationProperty Name="FranchiseId" Relationship="DominosMasters.Store_FranchiseId" FromRole="Store" ToRole="Franchise"/>
+                <Property Name="FranchiseId_Id" Type="Edm.Int32"/>
+                <Property Name="PSFRANCHISEId" Type="Edm.String" MaxLength="15"/>
+                <Property Name="StoreHead" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="SAPId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="FranchiseType" Type="Edm.String" MaxLength="5"/>
+                <Property Name="Phone_No" Type="Edm.String" MaxLength="24"/>
+            </EntityType>
+            <EntityType Name="Address">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="AddressName"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="AddressName" Type="Edm.String" MaxLength="40" Nullable="false"/>
+                <Property Name="AddressType" Type="Edm.String" MaxLength="20"/>
+                <Property Name="AddressLine_1" Type="Edm.String" MaxLength="55"/>
+                <Property Name="AddressLine_2" Type="Edm.String" MaxLength="55"/>
+                <Property Name="City" Type="Edm.String" MaxLength="30"/>
+                <Property Name="County" Type="Edm.String" MaxLength="30"/>
+                <Property Name="State" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ZipCode" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Create_UpdateCR" Type="Edm.String" MaxLength="10"/>
+                <NavigationProperty Name="StoreId" Relationship="DominosMasters.Address_StoreId" FromRole="Address" ToRole="Store"/>
+                <Property Name="StoreId_Id" Type="Edm.Int32"/>
+                <NavigationProperty Name="RegionId" Relationship="DominosMasters.Address_RegionId" FromRole="Address" ToRole="Region"/>
+                <Property Name="RegionId_Id" Type="Edm.Int32"/>
+                <NavigationProperty Name="SCCId" Relationship="DominosMasters.Address_SCCId" FromRole="Address" ToRole="SCCRegion"/>
+                <Property Name="SCCId_Id" Type="Edm.Int32"/>
+                <Property Name="SCCId_RegionId" Type="Edm.Int32"/>
+                <NavigationProperty Name="FranchiseId" Relationship="DominosMasters.Address_FranchiseId" FromRole="Address" ToRole="Franchise"/>
+                <Property Name="FranchiseId_Id" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Accountant">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="RegionId_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="AccountantName" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="Address" Relationship="DominosMasters.Accountant_Address" FromRole="Accountant" ToRole="Address"/>
+                <Property Name="Address_Id" Type="Edm.Guid"/>
+                <Property Name="Address_AddressName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="RegionId" Relationship="DominosMasters.Accountant_RegionId" FromRole="Accountant" ToRole="Region"/>
+                <Property Name="RegionId_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="AccountantHead" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="SAPId" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="Region">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="RegionName" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="Address" Relationship="DominosMasters.Address_RegionId" FromRole="Region" ToRole="Address"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+                <Property Name="RegionHead" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="SAPId" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="SCCRegion">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="RegionId"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="Address" Relationship="DominosMasters.Address_SCCId" FromRole="SCCRegion" ToRole="Address"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+                <Property Name="RegionId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="SCCRegionHead" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="SAPId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ISSAP" Type="Edm.String" MaxLength="1"/>
+                <Property Name="DCITEM" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="CRType">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="30"/>
+                <Property Name="SAPCode" Type="Edm.String" MaxLength="5"/>
+                <Property Name="StoreCRtype" Type="Edm.String" MaxLength="1"/>
+                <Property Name="StoreCRtypeWithOutInv" Type="Edm.String" MaxLength="1"/>
+                <Property Name="SCCCRtype" Type="Edm.String" MaxLength="1"/>
+                <Property Name="SCCCDelCRType" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Sequence" Type="Edm.Int32"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="Franchise">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="40"/>
+                <NavigationProperty Name="Address" Relationship="DominosMasters.Address_FranchiseId" FromRole="Franchise" ToRole="Address"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="AccountantId" Relationship="DominosMasters.Franchise_AccountantId" FromRole="Franchise" ToRole="Accountant"/>
+                <Property Name="AccountantId_Id" Type="Edm.Int32"/>
+                <Property Name="AccountantId_RegionId_Id" Type="Edm.Int32"/>
+                <NavigationProperty Name="SCCId" Relationship="DominosMasters.Franchise_SCCId" FromRole="Franchise" ToRole="SCCRegion"/>
+                <Property Name="SCCId_Id" Type="Edm.Int32"/>
+                <Property Name="SCCId_RegionId" Type="Edm.Int32"/>
+                <Property Name="FranchiseHead" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="SAPId" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="Department">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="3"/>
+            </EntityType>
+            <EntityType Name="ReasonCode">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="Damage">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="30"/>
+            </EntityType>
+            <EntityType Name="UserConfig">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="UserId_UserId"/>
+                    <PropertyRef Name="UserId_OrgStruEleCode_Id"/>
+                    <PropertyRef Name="UserId_DepartmentId_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="UserId" Relationship="DominosMasters.UserConfig_UserId" FromRole="UserConfig" ToRole="User"/>
+                <Property Name="UserId_UserId" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="UserId_OrgStruEleCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="UserId_DepartmentId_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="ApplicationId" Type="Edm.String" MaxLength="12"/>
+                <Property Name="ApplicationName" Type="Edm.String" MaxLength="120"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="UserAssignment">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="100"/>
+                <Property Name="AssignmentType" Type="Edm.String" MaxLength="20"/>
+                <Property Name="AssignmentId" Type="Edm.Int32"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="User" Relationship="DominosMasters.UserAssignment_User" FromRole="UserAssignment" ToRole="User"/>
+                <Property Name="User_UserId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="User_OrgStruEleCode_Id" Type="Edm.Int32"/>
+                <Property Name="User_DepartmentId_Id" Type="Edm.Int32"/>
+                <Property Name="SetAsDef" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="Route">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="RouteName" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="User">
+                <Key>
+                    <PropertyRef Name="UserId"/>
+                    <PropertyRef Name="OrgStruEleCode_Id"/>
+                    <PropertyRef Name="DepartmentId_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="UserId" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="Prefix" Type="Edm.String" MaxLength="8"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="30"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Sufix" Type="Edm.String" MaxLength="10"/>
+                <Property Name="E_mail_ID" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Mob_No" Type="Edm.String" MaxLength="50"/>
+                <NavigationProperty Name="OrgStruEleCode" Relationship="DominosMasters.User_OrgStruEleCode" FromRole="User" ToRole="OrgStructureEle"/>
+                <Property Name="OrgStruEleCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="UserGroup" Relationship="DominosMasters.User_UserGroup" FromRole="User" ToRole="UserGroup"/>
+                <Property Name="UserGroup_Id" Type="Edm.Int32"/>
+                <Property Name="UserGroup_OrgStrucEleCode_Id" Type="Edm.Int32"/>
+                <NavigationProperty Name="DepartmentId" Relationship="DominosMasters.User_DepartmentId" FromRole="User" ToRole="Department"/>
+                <Property Name="DepartmentId_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="ISAPVR" Type="Edm.String" MaxLength="1"/>
+                <Property Name="APVRSCC1" Type="Edm.String" MaxLength="30"/>
+                <Property Name="APVRSCC2" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="15"/>
+            </EntityType>
+            <EntityType Name="OrgStructureEle">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="120"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="ObjectType">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="TypeDesc" Type="Edm.String" MaxLength="60"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="CRStatus">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="ObjectType_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StatusType" Type="Edm.String" MaxLength="8"/>
+                <Property Name="StatusDescription" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="ObjectType" Relationship="DominosMasters.CRStatus_ObjectType" FromRole="CRStatus" ToRole="ObjectType"/>
+                <Property Name="ObjectType_Id" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="UserGroup">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="OrgStrucEleCode_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="UserGroupDescription" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="OrgStrucEleCode" Relationship="DominosMasters.UserGroup_OrgStrucEleCode" FromRole="UserGroup" ToRole="OrgStructureEle"/>
+                <Property Name="OrgStrucEleCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="Roles">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Roles" Type="Edm.String" MaxLength="8"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="Remark">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="120"/>
+                <Property Name="RemarkType" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="AccessControlHead">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="OrgStrucEleCode_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="OrgStrucEleCode" Relationship="DominosMasters.AccessControlHead_OrgStrucEleCode" FromRole="AccessControlHead" ToRole="OrgStructureEle"/>
+                <Property Name="OrgStrucEleCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="UserGroup" Relationship="DominosMasters.AccessControlHead_UserGroup" FromRole="AccessControlHead" ToRole="UserGroup"/>
+                <Property Name="UserGroup_Id" Type="Edm.Int32"/>
+                <Property Name="UserGroup_OrgStrucEleCode_Id" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="AccessControlRow">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="RowId" Type="Edm.Int32"/>
+                <NavigationProperty Name="ObjectType" Relationship="DominosMasters.AccessControlRow_ObjectType" FromRole="AccessControlRow" ToRole="ObjectType"/>
+                <Property Name="ObjectType_Id" Type="Edm.Int32"/>
+                <Property Name="AccessType" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="FormMaster">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="ObjectType_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="FormName" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="ObjectType" Relationship="DominosMasters.FormMaster_ObjectType" FromRole="FormMaster" ToRole="ObjectType"/>
+                <Property Name="ObjectType_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="StatusConfigHead">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="StatusCode_Id"/>
+                    <PropertyRef Name="StatusCode_ObjectType_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StatusFor" Type="Edm.String" MaxLength="4"/>
+                <NavigationProperty Name="ObjectType" Relationship="DominosMasters.StatusConfigHead_ObjectType" FromRole="StatusConfigHead" ToRole="ObjectType"/>
+                <Property Name="ObjectType_Id" Type="Edm.Int32"/>
+                <NavigationProperty Name="StatusCode" Relationship="DominosMasters.StatusConfigHead_StatusCode" FromRole="StatusConfigHead" ToRole="CRStatus"/>
+                <Property Name="StatusCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StatusCode_ObjectType_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="AutoStatus" Type="Edm.String" MaxLength="4"/>
+                <Property Name="StatusCall" Type="Edm.String" MaxLength="8"/>
+                <Property Name="Event" Type="Edm.String" MaxLength="12"/>
+                <Property Name="Warning_Alert" Type="Edm.String" MaxLength="60"/>
+                <NavigationProperty Name="StatusConfigNextStaus" Relationship="DominosMasters.StatusConfigNextStaus_StatusConfigHead" FromRole="StatusConfigHead" ToRole="StatusConfigNextStaus"/>
+                <NavigationProperty Name="StatusConfigAccess" Relationship="DominosMasters.StatusConfigAccess_StatusConfigHead" FromRole="StatusConfigHead" ToRole="StatusConfigAccess"/>
+            </EntityType>
+            <EntityType Name="StatusConfigNextStaus">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="StatusCode_Id"/>
+                    <PropertyRef Name="StatusCode_ObjectType_Id"/>
+                    <PropertyRef Name="StatusConfigHead_Id"/>
+                    <PropertyRef Name="StatusConfigHead_StatusCode_Id"/>
+                    <PropertyRef Name="StatusConfigHead_StatusCode_ObjectType_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="RowId" Type="Edm.Int32"/>
+                <NavigationProperty Name="StatusCode" Relationship="DominosMasters.StatusConfigNextStaus_StatusCode" FromRole="StatusConfigNextStaus" ToRole="CRStatus"/>
+                <Property Name="StatusCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StatusCode_ObjectType_Id" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="StatusConfigHead" Relationship="DominosMasters.StatusConfigNextStaus_StatusConfigHead" FromRole="StatusConfigNextStaus" ToRole="StatusConfigHead"/>
+                <Property Name="StatusConfigHead_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StatusConfigHead_StatusCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StatusConfigHead_StatusCode_ObjectType_Id" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="StatusConfigAccess">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="StatusConfigHead_Id"/>
+                    <PropertyRef Name="StatusConfigHead_StatusCode_Id"/>
+                    <PropertyRef Name="StatusConfigHead_StatusCode_ObjectType_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="RowId" Type="Edm.Int32"/>
+                <NavigationProperty Name="AccessTo" Relationship="DominosMasters.StatusConfigAccess_AccessTo" FromRole="StatusConfigAccess" ToRole="OrgStructureEle"/>
+                <Property Name="AccessTo_Id" Type="Edm.Int32"/>
+                <Property Name="AccessType" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="StatusConfigHead" Relationship="DominosMasters.StatusConfigAccess_StatusConfigHead" FromRole="StatusConfigAccess" ToRole="StatusConfigHead"/>
+                <Property Name="StatusConfigHead_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StatusConfigHead_StatusCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StatusConfigHead_StatusCode_ObjectType_Id" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ChangeLog">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="ObjectType_Id"/>
+                    <PropertyRef Name="UserId_UserId"/>
+                    <PropertyRef Name="UserId_OrgStruEleCode_Id"/>
+                    <PropertyRef Name="UserId_DepartmentId_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="ObjectType" Relationship="DominosMasters.ChangeLog_ObjectType" FromRole="ChangeLog" ToRole="ObjectType"/>
+                <Property Name="ObjectType_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="ObjectRef" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="UserId" Relationship="DominosMasters.ChangeLog_UserId" FromRole="ChangeLog" ToRole="User"/>
+                <Property Name="UserId_UserId" Type="Edm.String" MaxLength="50" Nullable="false"/>
+                <Property Name="UserId_OrgStruEleCode_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="UserId_DepartmentId_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="FieldName" Type="Edm.String" MaxLength="30"/>
+                <Property Name="OldValue" Type="Edm.String" MaxLength="120"/>
+                <Property Name="NewValue" Type="Edm.String" MaxLength="120"/>
+                <Property Name="DateTime" Type="Edm.DateTimeOffset"/>
+            </EntityType>
+            <EntityType Name="BTP_DelvFee_Setup">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="CRType_Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="ItemNo" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="10"/>
+                <NavigationProperty Name="CRType" Relationship="DominosMasters.BTP_DelvFee_Setup_CRType" FromRole="BTP_DelvFee_Setup" ToRole="CRType"/>
+                <Property Name="CRType_Id" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="BTP_DelvFee_Setup_Dtl">
+                <Key>
+                    <PropertyRef Name="BTP_DelvFee_Setup_Id"/>
+                    <PropertyRef Name="BTP_DelvFee_Setup_CRType_Id"/>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <NavigationProperty Name="BTP_DelvFee_Setup" Relationship="DominosMasters.BTP_DelvFee_Setup_Dtl_BTP_DelvFee_Setup" FromRole="BTP_DelvFee_Setup_Dtl" ToRole="BTP_DelvFee_Setup"/>
+                <Property Name="BTP_DelvFee_Setup_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="BTP_DelvFee_Setup_CRType_Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="FromDate" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="ToDate" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="ByPer" Type="Edm.Decimal" Scale="2" Precision="18"/>
+                <Property Name="ByAmount" Type="Edm.Decimal" Scale="2" Precision="18"/>
+            </EntityType>
+            <EntityType Name="ProductName">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Desc" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="ProductIssue" Relationship="DominosMasters.ProductIssue_ProductID" FromRole="ProductName" ToRole="ProductIssue"/>
+            </EntityType>
+            <EntityType Name="ProductIssue">
+                <Key>
+                    <PropertyRef Name="IssueId"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="IssueId" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="IssueCode" Relationship="DominosMasters.ProductIssue_IssueCode" FromRole="ProductIssue" ToRole="ProductIssueMaster"/>
+                <Property Name="IssueCode_Id" Type="Edm.Int32"/>
+                <Property Name="IssueDesc" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="ProductID" Relationship="DominosMasters.ProductIssue_ProductID" FromRole="ProductIssue" ToRole="ProductName"/>
+                <Property Name="ProductID_Id" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="ProductIssueMaster">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="IssueDesc" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityType Name="FiscalPeriod">
+                <Key>
+                    <PropertyRef Name="FYCODE"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="FYCODE" Type="Edm.String" MaxLength="20" Nullable="false"/>
+                <Property Name="YEAR" Type="Edm.String" MaxLength="10"/>
+                <Property Name="STARTDATE" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="ENDDATE" Type="Edm.DateTime" sap:display-format="Date"/>
+                <NavigationProperty Name="FiscalPeriodRow" Relationship="DominosMasters.FiscalPeriodRow_FYCODE" FromRole="FiscalPeriod" ToRole="FiscalPeriodRow"/>
+            </EntityType>
+            <EntityType Name="FiscalPeriodRow">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="FYCODE" Relationship="DominosMasters.FiscalPeriodRow_FYCODE" FromRole="FiscalPeriodRow" ToRole="FiscalPeriod"/>
+                <Property Name="FYCODE_FYCODE" Type="Edm.String" MaxLength="20"/>
+                <Property Name="PERIODID" Type="Edm.Int32"/>
+                <Property Name="PERIODWEEKID" Type="Edm.Int32"/>
+                <Property Name="WEEKNO" Type="Edm.Int32"/>
+                <Property Name="STARTDATE" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="ENDDATE" Type="Edm.DateTime" sap:display-format="Date"/>
+            </EntityType>
+            <EntityType Name="StoreDataLog">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Type" Type="Edm.String" MaxLength="20"/>
+                <Property Name="REQ_DATA" Type="Edm.String" MaxLength="5000"/>
+            </EntityType>
+            <EntityType Name="UserLog">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="Id" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="UserId" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Prefix" Type="Edm.String" MaxLength="8"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="30"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="30"/>
+                <Property Name="E_mail_ID" Type="Edm.String" MaxLength="50"/>
+                <Property Name="Mob_No" Type="Edm.String" MaxLength="50"/>
+                <Property Name="AssignmentType" Type="Edm.String" MaxLength="20"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="30"/>
+                <Property Name="SetAsDef" Type="Edm.String" MaxLength="1"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="50"/>
+                <Property Name="message" Type="Edm.String" MaxLength="100"/>
+                <Property Name="AcknowledgeID" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="StoreHeader">
+                <Key>
+                    <PropertyRef Name="StoreId"/>
+                </Key>
+                <Property Name="StoreId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="StoreName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="AddressId" Type="Edm.Guid"/>
+                <Property Name="AddressName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="AddressType" Type="Edm.String" MaxLength="20"/>
+                <Property Name="AddressLine_1" Type="Edm.String" MaxLength="55"/>
+                <Property Name="AddressLine_2" Type="Edm.String" MaxLength="55"/>
+                <Property Name="City" Type="Edm.String" MaxLength="30"/>
+                <Property Name="State" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ZipCode" Type="Edm.String" MaxLength="10"/>
+                <Property Name="StoreType" Type="Edm.String" MaxLength="1"/>
+                <NavigationProperty Name="SCCId" Relationship="DominosMasters.StoreHeader_SCCId" FromRole="StoreHeader" ToRole="SCCRegion"/>
+                <Property Name="SCCId_Id" Type="Edm.Int32"/>
+                <Property Name="SCCId_RegionId" Type="Edm.Int32"/>
+                <Property Name="SCCName" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="FranchiseId" Relationship="DominosMasters.StoreHeader_FranchiseId" FromRole="StoreHeader" ToRole="Franchise"/>
+                <Property Name="FranchiseId_Id" Type="Edm.Int32"/>
+                <Property Name="StoreHead" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="SAPId" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="SCCHeader">
+                <Key>
+                    <PropertyRef Name="SCCId"/>
+                    <PropertyRef Name="RegionId"/>
+                </Key>
+                <Property Name="SCCId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="30"/>
+                <Property Name="AddressId" Type="Edm.Guid"/>
+                <Property Name="AddressName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="AddressType" Type="Edm.String" MaxLength="20"/>
+                <Property Name="AddressLine_1" Type="Edm.String" MaxLength="55"/>
+                <Property Name="AddressLine_2" Type="Edm.String" MaxLength="55"/>
+                <Property Name="City" Type="Edm.String" MaxLength="30"/>
+                <Property Name="State" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="30"/>
+                <Property Name="ZipCode" Type="Edm.String" MaxLength="10"/>
+                <Property Name="Active" Type="Edm.String" MaxLength="1"/>
+                <Property Name="RegionId" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="SCCRegionHead" Type="Edm.String" MaxLength="30"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="SAPId" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityType Name="CreditRequestStatus">
+                <Property Name="StatusConfigHeadId" Type="Edm.Int32"/>
+                <Property Name="StatusFor" Type="Edm.String" MaxLength="4"/>
+                <Property Name="ObjectTypeId" Type="Edm.Int32"/>
+                <Property Name="TypeDesc" Type="Edm.String" MaxLength="60"/>
+                <Property Name="StatusId" Type="Edm.Int32"/>
+                <Property Name="StatusCodeObjectTypeId" Type="Edm.Int32"/>
+                <Property Name="AutoStatus" Type="Edm.String" MaxLength="4"/>
+                <Property Name="StatusCall" Type="Edm.String" MaxLength="8"/>
+                <Property Name="Event" Type="Edm.String" MaxLength="12"/>
+                <Property Name="Warning_Alert" Type="Edm.String" MaxLength="60"/>
+                <Property Name="StatusConfigNextStausId" Type="Edm.Int32"/>
+                <Property Name="StatusConfigNextStausRowId" Type="Edm.Int32"/>
+                <Property Name="StatusConfigNextStausStatusCodeObjectTypeId" Type="Edm.Int32"/>
+                <Property Name="StatusConfigAccessId" Type="Edm.Int32"/>
+                <Property Name="StatusConfigAccessRowId" Type="Edm.Int32"/>
+                <Property Name="StatusConfigAccessOrgStructureEleId" Type="Edm.Int32"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="120"/>
+                <Property Name="AccessType" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <ComplexType Name="Assignment">
+                <Property Name="AssignmentType" Type="Edm.String" MaxLength="20"/>
+                <Property Name="PsId" Type="Edm.String" MaxLength="30"/>
+                <Property Name="SetAsDef" Type="Edm.String" MaxLength="1"/>
+            </ComplexType>
+            <Association Name="Store_SCCId">
+                <End Role="Store" Type="DominosMasters.Store" Multiplicity="*"/>
+                <End Role="SCCRegion" Type="DominosMasters.SCCRegion" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="SCCRegion">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="RegionId"/>
+                    </Principal>
+                    <Dependent Role="Store">
+                        <PropertyRef Name="SCCId_Id"/>
+                        <PropertyRef Name="SCCId_RegionId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Store_FranchiseId">
+                <End Role="Store" Type="DominosMasters.Store" Multiplicity="*"/>
+                <End Role="Franchise" Type="DominosMasters.Franchise" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Franchise">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="Store">
+                        <PropertyRef Name="FranchiseId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Address_StoreId">
+                <End Role="Address" Type="DominosMasters.Address" Multiplicity="*"/>
+                <End Role="Store" Type="DominosMasters.Store" Multiplicity="0..1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <ReferentialConstraint>
+                    <Principal Role="Store">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="Address">
+                        <PropertyRef Name="StoreId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Address_RegionId">
+                <End Role="Address" Type="DominosMasters.Address" Multiplicity="*"/>
+                <End Role="Region" Type="DominosMasters.Region" Multiplicity="0..1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <ReferentialConstraint>
+                    <Principal Role="Region">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="Address">
+                        <PropertyRef Name="RegionId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Address_SCCId">
+                <End Role="Address" Type="DominosMasters.Address" Multiplicity="*"/>
+                <End Role="SCCRegion" Type="DominosMasters.SCCRegion" Multiplicity="0..1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <ReferentialConstraint>
+                    <Principal Role="SCCRegion">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="RegionId"/>
+                    </Principal>
+                    <Dependent Role="Address">
+                        <PropertyRef Name="SCCId_Id"/>
+                        <PropertyRef Name="SCCId_RegionId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Address_FranchiseId">
+                <End Role="Address" Type="DominosMasters.Address" Multiplicity="*"/>
+                <End Role="Franchise" Type="DominosMasters.Franchise" Multiplicity="0..1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <ReferentialConstraint>
+                    <Principal Role="Franchise">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="Address">
+                        <PropertyRef Name="FranchiseId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Accountant_Address">
+                <End Role="Accountant" Type="DominosMasters.Accountant" Multiplicity="*"/>
+                <End Role="Address" Type="DominosMasters.Address" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Address">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="AddressName"/>
+                    </Principal>
+                    <Dependent Role="Accountant">
+                        <PropertyRef Name="Address_Id"/>
+                        <PropertyRef Name="Address_AddressName"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Accountant_RegionId">
+                <End Role="Accountant" Type="DominosMasters.Accountant" Multiplicity="*"/>
+                <End Role="Region" Type="DominosMasters.Region" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Region">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="Accountant">
+                        <PropertyRef Name="RegionId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Franchise_AccountantId">
+                <End Role="Franchise" Type="DominosMasters.Franchise" Multiplicity="*"/>
+                <End Role="Accountant" Type="DominosMasters.Accountant" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Accountant">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="RegionId_Id"/>
+                    </Principal>
+                    <Dependent Role="Franchise">
+                        <PropertyRef Name="AccountantId_Id"/>
+                        <PropertyRef Name="AccountantId_RegionId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Franchise_SCCId">
+                <End Role="Franchise" Type="DominosMasters.Franchise" Multiplicity="*"/>
+                <End Role="SCCRegion" Type="DominosMasters.SCCRegion" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="SCCRegion">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="RegionId"/>
+                    </Principal>
+                    <Dependent Role="Franchise">
+                        <PropertyRef Name="SCCId_Id"/>
+                        <PropertyRef Name="SCCId_RegionId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="UserConfig_UserId">
+                <End Role="UserConfig" Type="DominosMasters.UserConfig" Multiplicity="*"/>
+                <End Role="User" Type="DominosMasters.User" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="User">
+                        <PropertyRef Name="UserId"/>
+                        <PropertyRef Name="OrgStruEleCode_Id"/>
+                        <PropertyRef Name="DepartmentId_Id"/>
+                    </Principal>
+                    <Dependent Role="UserConfig">
+                        <PropertyRef Name="UserId_UserId"/>
+                        <PropertyRef Name="UserId_OrgStruEleCode_Id"/>
+                        <PropertyRef Name="UserId_DepartmentId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="UserAssignment_User">
+                <End Role="UserAssignment" Type="DominosMasters.UserAssignment" Multiplicity="*"/>
+                <End Role="User" Type="DominosMasters.User" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="User">
+                        <PropertyRef Name="UserId"/>
+                        <PropertyRef Name="OrgStruEleCode_Id"/>
+                        <PropertyRef Name="DepartmentId_Id"/>
+                    </Principal>
+                    <Dependent Role="UserAssignment">
+                        <PropertyRef Name="User_UserId"/>
+                        <PropertyRef Name="User_OrgStruEleCode_Id"/>
+                        <PropertyRef Name="User_DepartmentId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="User_OrgStruEleCode">
+                <End Role="User" Type="DominosMasters.User" Multiplicity="*"/>
+                <End Role="OrgStructureEle" Type="DominosMasters.OrgStructureEle" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="OrgStructureEle">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="User">
+                        <PropertyRef Name="OrgStruEleCode_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="User_UserGroup">
+                <End Role="User" Type="DominosMasters.User" Multiplicity="*"/>
+                <End Role="UserGroup" Type="DominosMasters.UserGroup" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="UserGroup">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="OrgStrucEleCode_Id"/>
+                    </Principal>
+                    <Dependent Role="User">
+                        <PropertyRef Name="UserGroup_Id"/>
+                        <PropertyRef Name="UserGroup_OrgStrucEleCode_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="User_DepartmentId">
+                <End Role="User" Type="DominosMasters.User" Multiplicity="*"/>
+                <End Role="Department" Type="DominosMasters.Department" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Department">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="User">
+                        <PropertyRef Name="DepartmentId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CRStatus_ObjectType">
+                <End Role="CRStatus" Type="DominosMasters.CRStatus" Multiplicity="*"/>
+                <End Role="ObjectType" Type="DominosMasters.ObjectType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ObjectType">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="CRStatus">
+                        <PropertyRef Name="ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="UserGroup_OrgStrucEleCode">
+                <End Role="UserGroup" Type="DominosMasters.UserGroup" Multiplicity="*"/>
+                <End Role="OrgStructureEle" Type="DominosMasters.OrgStructureEle" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="OrgStructureEle">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="UserGroup">
+                        <PropertyRef Name="OrgStrucEleCode_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AccessControlHead_OrgStrucEleCode">
+                <End Role="AccessControlHead" Type="DominosMasters.AccessControlHead" Multiplicity="*"/>
+                <End Role="OrgStructureEle" Type="DominosMasters.OrgStructureEle" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="OrgStructureEle">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="AccessControlHead">
+                        <PropertyRef Name="OrgStrucEleCode_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AccessControlHead_UserGroup">
+                <End Role="AccessControlHead" Type="DominosMasters.AccessControlHead" Multiplicity="*"/>
+                <End Role="UserGroup" Type="DominosMasters.UserGroup" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="UserGroup">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="OrgStrucEleCode_Id"/>
+                    </Principal>
+                    <Dependent Role="AccessControlHead">
+                        <PropertyRef Name="UserGroup_Id"/>
+                        <PropertyRef Name="UserGroup_OrgStrucEleCode_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AccessControlRow_ObjectType">
+                <End Role="AccessControlRow" Type="DominosMasters.AccessControlRow" Multiplicity="*"/>
+                <End Role="ObjectType" Type="DominosMasters.ObjectType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ObjectType">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="AccessControlRow">
+                        <PropertyRef Name="ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="FormMaster_ObjectType">
+                <End Role="FormMaster" Type="DominosMasters.FormMaster" Multiplicity="*"/>
+                <End Role="ObjectType" Type="DominosMasters.ObjectType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ObjectType">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="FormMaster">
+                        <PropertyRef Name="ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="StatusConfigHead_ObjectType">
+                <End Role="StatusConfigHead" Type="DominosMasters.StatusConfigHead" Multiplicity="*"/>
+                <End Role="ObjectType" Type="DominosMasters.ObjectType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ObjectType">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="StatusConfigHead">
+                        <PropertyRef Name="ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="StatusConfigHead_StatusCode">
+                <End Role="StatusConfigHead" Type="DominosMasters.StatusConfigHead" Multiplicity="*"/>
+                <End Role="CRStatus" Type="DominosMasters.CRStatus" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="CRStatus">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="ObjectType_Id"/>
+                    </Principal>
+                    <Dependent Role="StatusConfigHead">
+                        <PropertyRef Name="StatusCode_Id"/>
+                        <PropertyRef Name="StatusCode_ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="StatusConfigNextStaus_StatusCode">
+                <End Role="StatusConfigNextStaus" Type="DominosMasters.StatusConfigNextStaus" Multiplicity="*"/>
+                <End Role="CRStatus" Type="DominosMasters.CRStatus" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="CRStatus">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="ObjectType_Id"/>
+                    </Principal>
+                    <Dependent Role="StatusConfigNextStaus">
+                        <PropertyRef Name="StatusCode_Id"/>
+                        <PropertyRef Name="StatusCode_ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="StatusConfigNextStaus_StatusConfigHead">
+                <End Role="StatusConfigNextStaus" Type="DominosMasters.StatusConfigNextStaus" Multiplicity="*"/>
+                <End Role="StatusConfigHead" Type="DominosMasters.StatusConfigHead" Multiplicity="0..1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <ReferentialConstraint>
+                    <Principal Role="StatusConfigHead">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="StatusCode_Id"/>
+                        <PropertyRef Name="StatusCode_ObjectType_Id"/>
+                    </Principal>
+                    <Dependent Role="StatusConfigNextStaus">
+                        <PropertyRef Name="StatusConfigHead_Id"/>
+                        <PropertyRef Name="StatusConfigHead_StatusCode_Id"/>
+                        <PropertyRef Name="StatusConfigHead_StatusCode_ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="StatusConfigAccess_AccessTo">
+                <End Role="StatusConfigAccess" Type="DominosMasters.StatusConfigAccess" Multiplicity="*"/>
+                <End Role="OrgStructureEle" Type="DominosMasters.OrgStructureEle" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="OrgStructureEle">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="StatusConfigAccess">
+                        <PropertyRef Name="AccessTo_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="StatusConfigAccess_StatusConfigHead">
+                <End Role="StatusConfigAccess" Type="DominosMasters.StatusConfigAccess" Multiplicity="*"/>
+                <End Role="StatusConfigHead" Type="DominosMasters.StatusConfigHead" Multiplicity="0..1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <ReferentialConstraint>
+                    <Principal Role="StatusConfigHead">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="StatusCode_Id"/>
+                        <PropertyRef Name="StatusCode_ObjectType_Id"/>
+                    </Principal>
+                    <Dependent Role="StatusConfigAccess">
+                        <PropertyRef Name="StatusConfigHead_Id"/>
+                        <PropertyRef Name="StatusConfigHead_StatusCode_Id"/>
+                        <PropertyRef Name="StatusConfigHead_StatusCode_ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ChangeLog_ObjectType">
+                <End Role="ChangeLog" Type="DominosMasters.ChangeLog" Multiplicity="*"/>
+                <End Role="ObjectType" Type="DominosMasters.ObjectType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ObjectType">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="ChangeLog">
+                        <PropertyRef Name="ObjectType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ChangeLog_UserId">
+                <End Role="ChangeLog" Type="DominosMasters.ChangeLog" Multiplicity="*"/>
+                <End Role="User" Type="DominosMasters.User" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="User">
+                        <PropertyRef Name="UserId"/>
+                        <PropertyRef Name="OrgStruEleCode_Id"/>
+                        <PropertyRef Name="DepartmentId_Id"/>
+                    </Principal>
+                    <Dependent Role="ChangeLog">
+                        <PropertyRef Name="UserId_UserId"/>
+                        <PropertyRef Name="UserId_OrgStruEleCode_Id"/>
+                        <PropertyRef Name="UserId_DepartmentId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BTP_DelvFee_Setup_CRType">
+                <End Role="BTP_DelvFee_Setup" Type="DominosMasters.BTP_DelvFee_Setup" Multiplicity="*"/>
+                <End Role="CRType" Type="DominosMasters.CRType" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="CRType">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="BTP_DelvFee_Setup">
+                        <PropertyRef Name="CRType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BTP_DelvFee_Setup_Dtl_BTP_DelvFee_Setup">
+                <End Role="BTP_DelvFee_Setup_Dtl" Type="DominosMasters.BTP_DelvFee_Setup_Dtl" Multiplicity="*"/>
+                <End Role="BTP_DelvFee_Setup" Type="DominosMasters.BTP_DelvFee_Setup" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="BTP_DelvFee_Setup">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="CRType_Id"/>
+                    </Principal>
+                    <Dependent Role="BTP_DelvFee_Setup_Dtl">
+                        <PropertyRef Name="BTP_DelvFee_Setup_Id"/>
+                        <PropertyRef Name="BTP_DelvFee_Setup_CRType_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductIssue_IssueCode">
+                <End Role="ProductIssue" Type="DominosMasters.ProductIssue" Multiplicity="*"/>
+                <End Role="ProductIssueMaster" Type="DominosMasters.ProductIssueMaster" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="ProductIssueMaster">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="ProductIssue">
+                        <PropertyRef Name="IssueCode_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductIssue_ProductID">
+                <End Role="ProductIssue" Type="DominosMasters.ProductIssue" Multiplicity="*"/>
+                <End Role="ProductName" Type="DominosMasters.ProductName" Multiplicity="0..1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <ReferentialConstraint>
+                    <Principal Role="ProductName">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="ProductIssue">
+                        <PropertyRef Name="ProductID_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="FiscalPeriodRow_FYCODE">
+                <End Role="FiscalPeriodRow" Type="DominosMasters.FiscalPeriodRow" Multiplicity="*"/>
+                <End Role="FiscalPeriod" Type="DominosMasters.FiscalPeriod" Multiplicity="0..1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <ReferentialConstraint>
+                    <Principal Role="FiscalPeriod">
+                        <PropertyRef Name="FYCODE"/>
+                    </Principal>
+                    <Dependent Role="FiscalPeriodRow">
+                        <PropertyRef Name="FYCODE_FYCODE"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="StoreHeader_SCCId">
+                <End Role="StoreHeader" Type="DominosMasters.StoreHeader" Multiplicity="*"/>
+                <End Role="SCCRegion" Type="DominosMasters.SCCRegion" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="SCCRegion">
+                        <PropertyRef Name="Id"/>
+                        <PropertyRef Name="RegionId"/>
+                    </Principal>
+                    <Dependent Role="StoreHeader">
+                        <PropertyRef Name="SCCId_Id"/>
+                        <PropertyRef Name="SCCId_RegionId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="StoreHeader_FranchiseId">
+                <End Role="StoreHeader" Type="DominosMasters.StoreHeader" Multiplicity="*"/>
+                <End Role="Franchise" Type="DominosMasters.Franchise" Multiplicity="0..1"/>
+                <ReferentialConstraint>
+                    <Principal Role="Franchise">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="StoreHeader">
+                        <PropertyRef Name="FranchiseId_Id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Annotations Target="DominosMasters.Store/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Store/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Store/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Store/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Address/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Address/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Address/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Address/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Accountant/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Accountant/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Accountant/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Accountant/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Region/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Region/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Region/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Region/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.SCCRegion/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.SCCRegion/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.SCCRegion/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.SCCRegion/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.CRType/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.CRType/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.CRType/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.CRType/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Franchise/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Franchise/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Franchise/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Franchise/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Department/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Department/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Department/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Department/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ReasonCode/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ReasonCode/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ReasonCode/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ReasonCode/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Damage/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Damage/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Damage/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Damage/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserConfig/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserConfig/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserConfig/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserConfig/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserAssignment/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserAssignment/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserAssignment/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserAssignment/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Route/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Route/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Route/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Route/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.User/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.User/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.User/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.User/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.OrgStructureEle/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.OrgStructureEle/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.OrgStructureEle/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.OrgStructureEle/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ObjectType/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ObjectType/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ObjectType/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ObjectType/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.CRStatus/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.CRStatus/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.CRStatus/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.CRStatus/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserGroup/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserGroup/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserGroup/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserGroup/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Roles/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Roles/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Roles/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Roles/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Remark/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Remark/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Remark/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.Remark/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.AccessControlHead/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.AccessControlHead/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.AccessControlHead/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.AccessControlHead/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.AccessControlRow/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.AccessControlRow/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.AccessControlRow/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.AccessControlRow/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FormMaster/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FormMaster/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FormMaster/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FormMaster/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigHead/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigHead/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigHead/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigHead/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigNextStaus/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigNextStaus/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigNextStaus/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigNextStaus/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigAccess/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigAccess/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigAccess/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StatusConfigAccess/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ChangeLog/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ChangeLog/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ChangeLog/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ChangeLog/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.BTP_DelvFee_Setup/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.BTP_DelvFee_Setup/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.BTP_DelvFee_Setup/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.BTP_DelvFee_Setup/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.BTP_DelvFee_Setup_Dtl/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.BTP_DelvFee_Setup_Dtl/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.BTP_DelvFee_Setup_Dtl/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.BTP_DelvFee_Setup_Dtl/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductName/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductName/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductName/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductName/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductIssue/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductIssue/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductIssue/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductIssue/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductIssueMaster/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductIssueMaster/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductIssueMaster/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.ProductIssueMaster/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FiscalPeriod/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FiscalPeriod/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FiscalPeriod/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FiscalPeriod/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FiscalPeriodRow/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FiscalPeriodRow/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FiscalPeriodRow/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.FiscalPeriodRow/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StoreDataLog/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StoreDataLog/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StoreDataLog/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.StoreDataLog/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserLog/createdAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserLog/createdBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserLog/modifiedAt" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="DominosMasters.UserLog/modifiedBy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
